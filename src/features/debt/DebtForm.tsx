@@ -72,6 +72,7 @@ export default function DebtForm({ isOpen, onClose, editId }: Props) {
                 description: formData.description,
                 creditor: formData.creditor,
                 amount: finalAmount,
+                completed: false,
                 createdAt: new Date().toISOString(),
                 updatedAt: new Date().toISOString()
             }));

@@ -25,8 +25,20 @@ const debtSlice = createSlice({
         deleteDebt: (state, action: PayloadAction<string>) => {
             state.items = state.items.filter((item) => item.id !== action.payload);
         },
+        toggleComplete: (state, action: PayloadAction<string>) => {
+            const item = state.items.find((item) => item.id === action.payload);
+            if (item) {
+                item.completed = !item.completed;
+            }
+        },
+        adjustDebtAmount: (state, action: PayloadAction<{ id: string; amount: number }>) => {
+            const item = state.items.find((item) => item.id === action.payload.id);
+            if (item) {
+                item.amount += action.payload.amount;
+            }
+        },
     },
 });
 
-export const { addDebt, updateDebt, deleteDebt } = debtSlice.actions;
+export const { addDebt, updateDebt, deleteDebt, toggleComplete, adjustDebtAmount } = debtSlice.actions;
 export default debtSlice.reducer;
