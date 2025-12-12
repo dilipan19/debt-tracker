@@ -34,7 +34,7 @@ export default function DebtTable({ onEdit }: Props) {
                 <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Active Entries</h3>
                 <div style={{ fontSize: '1.1rem' }}>
                     Total: <span style={{ color: totalAmount >= 0 ? 'var(--success)' : 'var(--danger)', fontWeight: 'bold' }}>
-                        ${totalAmount.toFixed(2)}
+                        ₹{totalAmount.toFixed(2)}
                     </span>
                 </div>
             </div>
