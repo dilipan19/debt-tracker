@@ -166,9 +166,19 @@ export default function DebtTable({ onEdit }: Props) {
                                             <div style={{ display: 'flex', gap: '0.5rem' }}>
                                                 <button
                                                     className="btn btn-icon"
-                                                    style={{ color: debt.completed ? 'var(--text-secondary)' : 'var(--success)' }}
+                                                    style={{
+                                                        color: (debt.completed || Math.abs(debt.amount) > 0.01) ? 'var(--text-secondary)' : 'var(--success)',
+                                                        cursor: (debt.completed || Math.abs(debt.amount) > 0.01) ? 'not-allowed' : 'pointer'
+                                                    }}
                                                     onClick={() => handleToggleComplete(debt.id, debt.description, debt.completed)}
-                                                    title={debt.completed ? "Mark as Active" : "Mark as Completed"}
+                                                    disabled={debt.completed || Math.abs(debt.amount) > 0.01}
+                                                    title={
+                                                        debt.completed
+                                                            ? "This entry is completed"
+                                                            : Math.abs(debt.amount) > 0.01
+                                                                ? "Balance must be 0 to complete"
+                                                                : "Mark as Completed"
+                                                    }
                                                 >
                                                     <Check size={16} />
                                                 </button>
